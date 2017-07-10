@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Github Users</title>
+	<link href="css/styles.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Bellefair" rel="stylesheet">
+	<link rel="stylesheet" href="js/fancybox/jquery.fancybox.css" type="text/css">
+</head>
+<body>
+	<div class="container">
+		<form id="userForm">
+			<div class="form-group">
+				<label>Github Username:</label>
+				<input type="text" id="username" class="form-control" placeholder="Search here">
+			</div>
+		</form>
+		<div id="profile"></div>
+	</div>
+	<script>
+		function getProfile(e){
+			e.preventDefault();
+			console.log('Fetching...');
+
+			var username = document.getElementById('username').value;
+			if(!username || username == ''){
+				username = 'mrmarton';
+			}
+
+			var xhttp = new XMLHttpRequest();
+			xhttp.onreadystatechange = function(){
+				if(xhttp.readyState == 4 && xhttp.status == 200){
+					var user = JSON.parse(xhttp.responseText);
+					document.getElementById('profile').innerHTML = `<div class="panel 		panel-default">
+  								<div class="panel-heading">
+    							<h3 class="panel-title">${user.name}</h3>
+  								</div>
+  								<div class="panel-body">
+    								<div class="row">
+    								<div class="cont">
+    								<img id="gitimg" src="${user.avatar_url}" alt="${user.name}" width="300" height="200">
+
+    								</div>
+    								<div class="panel-label">
+											<span class="label label-primary">Type: ${user.type}</span>
+    									<span class="label label-primary">Public Repos: ${user.public_repos}</span>
+
+    									<br><br>
+
+    									<ul class="bio">
+    										<li class="list-group-item">Website: ${user.blog}</li>
+    										<li class="list-group-item">Email: ${user.email}</li>
+												<li class="list-group-item">Location: ${user.location}</li>
+												<li class="list-group-item">Followers: ${user.followers}</li>
+												<li class="list-group-item">created: ${user.created_at}</li>
+												<li class="list-group-item">update: ${user.updated_at}</li>
+    									</ul>
+    									<a class="button" target="_blank" href="${user.html_url}">Visit Github</a>
+
+    								</div>
+    								</div>
+  								</div>
+							</div>`;
+				}
+			}
+			xhttp.open('GET', 'https://api.github.com/users/'+username, true);
+			xhttp.send();
+		}
+
+		document.getElementById('userForm').addEventListener('submit', getProfile, false);
+	</script>
+
+
+
+</body>
+</html>

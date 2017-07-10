@@ -1,0 +1,53 @@
+body{
+font-family: 'Bellefair', serif;
+background: grey;
+}
+
+.container{
+  margin-top: 50px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.profile{
+
+}
+
+img{
+  border-radius: 5px;
+  max-width: 199px;
+  float: left;
+  margin-left: 50px;
+}
+
+
+
+
+
+.panel-heading{
+  color: white;
+  margin-left: 50px;
+}
+
+.panel-label{
+  font-size: 1rem;
+
+}
+
+.bio{
+  font-size: 1.1rem;
+  list-style-type: none;
+}
+
+.button {
+    background-color: darkgrey;
+    border-radius: 5px;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+}
